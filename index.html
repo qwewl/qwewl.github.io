@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>qwewl</title>
+</head>
+<body>
+    <div id="preloader" class="container">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    
+    <div style="display: none;" id="start">
+        <div class="container">
+            <div class="center-box">
+            <h1>qwewl</h1>
+            </div>
+        </div>
+
+        <div class="arrow-container">
+            <div onclick="javascript:loadMain();" class="arrow">
+                <i class="fa fa-arrow-down"></i>
+            </div>
+        </div>
+    </div>
+    <div style="display: none;" id="main">
+        <div class="container">
+            <div class="center-box">
+                <h1 class="animate__animated animate__fadeIn">qwewl.github.io</h1>
+                <ul class="object-list">
+                    <li class="animate__animated animate__fadeInDown">Object 1</li>
+                    <li class="animate__animated animate__fadeInDown">Object 2</li>
+                    <li class="animate__animated animate__fadeInDown">Object 3</li>
+                    <li class="animate__animated animate__fadeInDown">Object 4</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    function fadeOutEffect() {
+        var fadeTarget = document.getElementById("start");
+        var fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.1;
+            } else {
+                document.getElementById("start").style.display = "none";
+                document.getElementById("preloader").style.display = "none";
+                clearInterval(fadeEffect);
+            }
+        }, 10);
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+    
+    function loadStart() {
+        setTimeout(function() {
+            document.getElementById("preloader").style.display = "none";
+            document.getElementById("start").style.display = "block";
+        }, getRandomInt(1000));
+    }
+
+    function loadMain() {
+        document.getElementById("preloader").style.display = "none";
+        document.getElementById("start").style.display = "none";
+        document.getElementById("main").style.display = "block";
+    }
+
+    loadStart();
+</script>
+
+<style>
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+    @import url("https://use.fontawesome.com/releases/v5.7.0/css/all.css");
+
+    html {
+        background-color: #121212;
+    }
+    
+    body {
+        overflow-y: hidden; /* Hide vertical scrollbar */
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+    }
+    
+    .container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        
+    .center-box {
+        text-align: center;
+    }
+
+    /* preloader */
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #fff;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #fff transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+
+    /* finish */
+    
+    h1, h2, h3, h4, h5, a, p {
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .arrow-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+    
+    .arrow {
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes bounce {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    .object-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.object-list li {
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    transition-duration: 1;
+}
+.object-list li:hover {
+    color: #ff00ff;
+}
+
+</style>
